@@ -1,0 +1,56 @@
+{
+  "name": "language-csgo-cfg",
+  "displayName": "CSGO .cfg Syntax Highlighting",
+  "description": "Syntax support for Source Engine scripting",
+  "version": "0.0.1",
+  "publisher": "dirt_lxiv",
+  "engines": {
+    "vscode": "^1.24.0"
+  },
+  "icon": "images/csgo_logo.png",
+  "galleryBanner": {
+    "color": "#293849",
+    "theme": "dark"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "scripting",
+    "csgo",
+    "CSGO",
+    "cs",
+    "go",
+    "cfg",
+    "source engine",
+    "highlight"
+  ],
+  "license": "GNU General Public License (GPL) version 3",
+  "repository": "https://github.com/ageofkimptown/language-csgo-cfg",
+  "bugs": {
+    "url": "https://github.com/ageofkimptown/language-csgo-cfg/issues"
+  },
+  "contributes": {
+    "languages": [
+      {
+        "id": "CSGO cfg",
+        "aliases": [
+          "CSGO cfg",
+          "cfg",
+          "CSGO"
+        ],
+        "extensions": [
+          ".cfg"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "CSGO cfg",
+        "scopeName": "source.cfg",
+        "path": "./syntaxes/cfg.tmLanguage.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "$schema":
+    "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "CSGO",
+  "scopeName": "source.cfg",
+
+  "patterns": [
+    {
+      "include": "#comment"
+    },
+    {
+      "include": "#command"
+    },
+    {
+      "include": "#numeric-literal"
+    },
+    {
+      "include": "#variable"
+    },
+    {
+      "include": "#macro"
+    },
+    {
+      "include": "#punctuation-semicolon"
+    }
+  ],
+
+  "repository": {
+    "punctuation-semicolon": {
+      "patterns": [
+        {
+          "name": "punctuation.separator.comma.js",
+          "match": ";"
+        }
+      ]
+    },
+
+    "macro": {
+      "name": "meta.type.function.js",
+      "begin": "\"",
+      "beginCaptures": {
+        "0": {
+          "name": "string.quoted.double.cfg"
+        }
+      },
+      "end": "\"",
+      "endCaptures": {
+        "0": {
+          "name": "string.quoted.double.cfg"
+        }
+      },
+      
+      "patterns": [
+        {
+          "name": "string.quoted.double.cfg",
+          "match": ";"
+        },
+        {
+          "include": "#command"
+        },
+        {
+          "include": "#numeric-literal"
+        },
+        {
+          "include": "#variable"
+        }
+      ]
+    },
+    "variable": {
+      "patterns": [
+        {
+          "name": "variable.other.readwrite.js",
+          "match": "([\\+|-]?[_$[:alpha:]][_$[:alnum:]]*)"
+        }
+      ]
+    },
+    "numeric-literal": {
+      "patterns": [
+        {
+          "name": "constant.numeric",
+          "match": "(-?\\d(?:.\\d)?)"
+        }
+      ]
+    },
+    "comment": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.js",
+          "begin": "(//)",
+          "end": "(?=^)"
+        }
+      ]
+    },
+    "command": {
+      "patterns": [
+        {
+          "include": "#unknown"
+        },
+        {
+          "include": "#buttons"
+        },
+        {
+          "include": "#actions"
+        },
+        {
+          "include": "#settings"
+        }
+      ]
+    },
+    "buttons": {
+      "patterns": [
+        {
+          "match":
+            "(?i)(?:(?<=bind\\s)|(?<=bindtoggle\\s))(\")?(\\d|[a-z]|MOUSE\\d?|MWHEELUP|MWHEELDOWN|KP_\\w+|LEFTARROW|UPARROW|RIGHTARROW|DOWNARROW|SPACE|SHIFT|RSHIFT|ALT|RALT|CTRL|RCTRL|TAB|INS|END|ESCAPE|SEMICOLON|BACKSPACE|HOME|END|F\\d{1,2}|PGUP|PGDN|PAUSE|\\/|`|\\'|\\[|\\]|\\.|\\-|\\=|,|\\\\)(\")?\\s",
+          "captures": {
+            "1": {
+              "name": "string.quoted.double.cfg"
+            },
+            "3": {
+              "name": "string.quoted.double.cfg"
+            },
+            "2": {
+              "name": "support.class"
+            }
+          }
+        }
+      ]
+    },
+    "actions": {
+      "patterns": [
+        {
+          "name": "keyword.other.cfg",
+          "match":
+            "(?i)([\\+|-]attack\\d?|[\\+|-]jump|[\\+|-]jumpthrow|[\\+|-]use|[\\+|-]lookatweapon|[\\+|-]noclip|[\\+|-]keybinds|[\\+|-]duck|[\\+|-]forward|[\\+|-]back|[\\+|-]moveleft|[\\+|-]moveright|[\\+|-]moveup|[\\+|-]movedown|[\\+|-]reload|[\\+|-]inspect|[\\+|-]use_action_slot_item|[\\+|-]voicerecord|[\\+|-]taunt|[\\+|-]lookup|[\\+|-]lookdown|[\\+|-]showscores|[\\+|-]strafe|[\\+|-]klook|[\\+|-]showroundinfo|[\\+|-]camdistance|[\\+|-]camin|[\\+|-]camout|[\\+|-]cammousemove|[\\+|-]campitchdown|[\\+|-]campitchup|[\\+|-]camyawleft|[\\+|-]camyawright|[\\+|-]speed)\\b"
+        },
+        {
+          "name": "keyword.other.cfg",
+          "match":
+            "(?i)\\b(say|say_team|say_party|lastinv|load_itempreset|voicemenu|voice_menu_\\d|join_class|vote|changeclass|changeteam|open_charinfo_\\w+|show_quest_log|disguiseteam|cancelselect|pause|quit|toggleconsole|buy|buymenu|radio|radio1|radio2|radio3|drop|teammenu|messagemode|messagemode2|disconnect|developer|playvol|screenshot|save_replay|askconnect_accept|abuse_report_queue|name|lastdisguise|dropitem|centerview|showmapinfo|inspect|invnext|invprev|wait|taunt_by_name|slot\\d{1,2})\\b"
+        },
+        {
+          "name": "keyword.other.cfg",
+          "match": "(?i)\\b(spec_\\w+)\\b"
+        }
+      ]
+    },
+    "settings": {
+      "patterns": [
+        {
+          "name": "keyword.control.cfg",
+          "match":
+            "(?i)\\b(exec|alias|bind|bind_mac|bindtoggle|toggle|unbind|unbindall|volume|crosshair|sensitivity|rate|map|deathmatch|tracer_extra|in_usekeyboardsampletime|joystick|fast_fogvolume|incrementvar|joy_\\w+|fov_\\w+|viewmodel\\w+|m_\\w+|map_\\w+|r_\\w+|net_\\w+|cl_\\w+|tf_\\w+|sv_\\w+|con_\\w+|obj_\\w+|hud_\\w+|sixense_\\w+|windows_\\w+|snd_\\w+|mat_\\w+|mp_\\w+|flex_\\w+|lod_\\w+|rope_\\w+|glow_\\w+|demo_\\w+|func_\\w+|violence_\\w+|dsp_\\w+|props_\\w+|ragdoll_\\w+|ai_\\w+|g_\\w+|cam_\\w+|sb_\\w+|mod_\\w+|nav_\\w+|filesystem_\\w+|budget__\\w+|c_\\w+|cache_\\w+|replay_\\w+|vr_\\w+|pyro_\\w+|nb_\\w+|ent_\\w+|fire_\\w+|fog_\\w+|ifm_\\w+|ds_\\w+|host_\\w+|cc_\\w+|g_\\w+|gameui_\\w+|full|blink_duration|bloodspray|bot|bot_\\w+|mm_\\w+|mc_\\w+|spec_\\w+|zoom_\\w+|gameinstructor_\\w+|fps_\\w+|game_\\w+|voice_\\w+|sm_\\w+)\\b"
+        }
+      ]
+    },
+    "unknown": {
+      "patterns": [
+        {
+          "name": "invalid.deprecated",
+          "match": "\\b(buddha|god)\\b"
+        },
+        {
+          "name": "invalid.deprecated",
+          "match": "([\\+|-]mlook|[\\+|-]alt[1|2])"
+        }
+      ]
+    }
+  }
+}
