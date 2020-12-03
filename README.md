@@ -1,2 +1,2 @@
 # language-csgo-cfg
-CO:GO syntax highlighting for visual studio code
+CS:GO syntax highlighting for visual studio code
